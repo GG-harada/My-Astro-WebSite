@@ -4,10 +4,10 @@ import BlogPost from '../../components/BlogPost.astro';
 
 export async function getStaticPaths() {
     const allPosts = await Astro.glob('../posts/*.md');
-    const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
+    const uniqueGenres = [...new Set(allPosts.map((post) => post.frontmatter.genres).flat())];
 
-    return uniqueTags.map((tag) => {
-        const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag));
+    return uniqueGenres.map((tag) => {
+        const filteredPosts = allPosts.filter((post) => post.frontmatter.genres.includes(tag));
         return {
             params: { tag },
             props: { posts: filteredPosts },
@@ -20,8 +20,9 @@ const { posts } = Astro.props;
 
 ---
 <BaseLayout pageTitle={tag}>
-    <p>{tag}のタグが付いた記事</p>
+    <p>{tag}のタグが付いたシリーズ</p>
     <ul>
-        {posts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
+        {posts.map((post) => 
+            <BlogPost url={post.url} title={post.frontmatter.title}/>)}
     </ul>
 </BaseLayout>

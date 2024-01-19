@@ -5,34 +5,50 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-    <p>{frontmatter.pubDate.slice(0,10)}</p>
-    <p><em>{frontmatter.description}</em></p>
-    <p>著者: {frontmatter.author}</p>
-    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
-
-    <div class="tags">
-        {frontmatter.tags.map((tag) => (
-            <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+    <p class="ruby">{frontmatter.ruby}</p>
+    <u class="tags">
+        {frontmatter.genres.map((genre) => (
+            <li>
+                <a href={`/tags/${genre}`}>{genre}</a>
+            </li>
+        ))}
+    </ul>
+    <div class="wrap">
+        {frontmatter.details.map((detail) => (
+            <article class="item">
+                <div class="img-wrapper">
+                    <img src={`/assets/images/${detail.image}`} alt={detail.title} />
+                </div>
+                <p>{detail.title}</p>
+                <p>{detail.introduction}</p>
+                <p>公開年：{detail.year}</p>
+                <p>シーズン：{detail.season}</p>
+            </article>
         ))}
     </div>
-
-    <slot />
 </BaseLayout>
 
 <style>
-    a {
-        color: #00539F;
+    .wrap {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+    }
+    .ruby {
+        margin-top: 0;
     }
     .tags {
         display: flex;
-        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 30px;
+        list-style: none;
     }
-    .tag {
-        margin: 0.25em;
-        border: dotted 1px #a1a1a1;
-        border-radius: .5em;
-        padding: .5em 1em;
-        font-size: 1.15em;
-        background-color: #F8FCFD;
+    .img-wrapper {
+        width: 100%;
+        aspect-ratio: 1 / 1.4;
+        overflow: hidden;
+    }
+    .img-wrapper img {
+        width: 100%;
     }
 </style>

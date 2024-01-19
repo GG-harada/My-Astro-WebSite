@@ -1,6 +1,48 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: '私の最初のブログ記事'
+
+title: 'メイドインアビス'
+ruby: 'めいどいんあびす'
+genres: ['Adventure', 'Mystery', 'Drama', 'Fantasy', 'Sci-Fi']
+details: [
+  {
+    title: 'メイドインアビス',
+    introduction: '',
+    image: 'abyss-01.jpg',
+    year: 2017,
+    season: 'summer'
+  },{
+    title: "メイドインアビス【前編】旅立ちの夜明け",
+    introduction: "",
+    image: "abyss-02.jpg",
+    year: 2019,
+    season: "winter",
+  },{
+    title: "メイドインアビス【後編】放浪する黄昏",
+    introduction: "",
+    image: "abyss-03.jpg",
+    year: 2019,
+    season: "winter",
+  },{
+    title: "メイドインアビス 深き魂の黎明",
+    introduction: "",
+    image: "abyss-04.jpg",
+    year: 2020,
+    season: "winter",
+  },{
+    title: "メイドインアビス 烈日の黄金郷",
+    introduction: "",
+    image: "abyss-05.jpg",
+    year: 2022,
+    season: "summer",
+  }
+]
+
+---
+
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: 'メイドインアビス'
 pubDate: 2022-07-01
 description: 'これは私の新しいAstroブログの最初の記事です。'
 author: 'Astro学習者'
@@ -9,6 +51,10 @@ image:
     alt: 'Astroのロゴ。'
 tags: ["astro", "ブログ", "公開学習", "テスト"]
 ---
+メイドインアビス
+
+
+
 
 # 私の最初のブログ記事
 

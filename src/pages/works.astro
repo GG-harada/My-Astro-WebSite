@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPost from '../components/BlogPost.astro';
+const allPosts = await Astro.glob('../pages/posts/*.md');
+const pageTitle = '作品タイトル（五十音順）';
+
+---
+
+<BaseLayout pageTitle={pageTitle}>
+	<ul>
+		{allPosts
+			// post.ruby の順にソート
+			.sort((a, b) => a.frontmatter.ruby.localeCompare(b.frontmatter.ruby)) 
+			.map((post) => 
+				<BlogPost url={post.url} title={post.frontmatter.title} />
+		)}
+	</ul>
+</BaseLayout>

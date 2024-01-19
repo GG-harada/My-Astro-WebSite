@@ -1,13 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Greeting from '../components/Greeting.jsx';
-const pageTitle = 'ホームページ';
+import BlogPost from '../components/BlogPost.astro';
 
+const pageTitle = 'トップホームページ';
+const allPosts = await Astro.glob('../pages/posts/*.md');
+
+let works = []
+// 全てのpostを取得
+for (let i = 0; i < allPosts.length; i++) {
+
+	// シリーズの中から全作品を再取得
+	for (let j = 0; j < allPosts[i].frontmatter.details.length; j++) {
+		// 配列内にpostのURLを追加
+		allPosts[i].frontmatter.details[j].url = (allPosts[i].url);
+		// 全シリーズの全作品を並列化
+		works.push(allPosts[i].frontmatter.details[j]);
+	}
+}
+
+// 全作品を日付順でソート化
+const sortedList = works.sort((a, b) => b.year - a.year);
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-	<h2>私の素晴らしいブログのサブタイトル</h2>
-	<Greeting messages={["どうも", "こんにちは", "初めまして", "ようこそ"]} />
-	<Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
-
+	<p>最新日時順</p>
+	<ul>
+		{sortedList.map((post) => 	
+			<BlogPost url={post.url} title={post.title} />
+		)}
+	</ul>
 </BaseLayout>
