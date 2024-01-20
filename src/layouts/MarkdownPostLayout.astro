@@ -14,8 +14,8 @@ const { frontmatter } = Astro.props;
         ))}
     </ul>
     <div class="wrap">
-        {frontmatter.details.map((detail) => (
-            <article class="item">
+        {frontmatter.details.map((detail, val) => (
+            <article class="item" id={`section-${val}`}>
                 <div class="img-wrapper">
                     <img src={`/assets/images/${detail.image}`} alt={detail.title} />
                 </div>

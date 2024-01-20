@@ -9,10 +9,14 @@ let works = []
 // 全てのpostを取得
 for (let i = 0; i < allPosts.length; i++) {
 
-	// シリーズの中から全作品を再取得
+	// 全Postの中から全作品を再取得
 	for (let j = 0; j < allPosts[i].frontmatter.details.length; j++) {
+
 		// 配列内にpostのURLを追加
 		allPosts[i].frontmatter.details[j].url = (allPosts[i].url);
+
+		allPosts[i].frontmatter.details[j].id = j;
+
 		// 全シリーズの全作品を並列化
 		works.push(allPosts[i].frontmatter.details[j]);
 	}
@@ -26,7 +30,7 @@ const sortedList = works.sort((a, b) => b.year - a.year);
 	<p>最新日時順</p>
 	<ul>
 		{sortedList.map((post) => 	
-			<BlogPost url={post.url} title={post.title} />
+			<BlogPost url={post.url + `#section-${post.id}`} title={post.title} />
 		)}
 	</ul>
 </BaseLayout>
