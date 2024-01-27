@@ -21,8 +21,17 @@ const { posts } = Astro.props;
 ---
 <BaseLayout pageTitle={tag}>
     <p>{tag}のタグが付いたシリーズ</p>
-    <ul>
+    <ul class="list">
         {posts.map((post) => 
             <BlogPost url={post.url} title={post.frontmatter.title}/>)}
     </ul>
 </BaseLayout>
+
+<style>
+	.list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+		list-style: none;
+	}
+</style>

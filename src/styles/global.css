@@ -19,8 +19,9 @@ html.dark {
     color: #fff;
 }
 
-.dark .nav-links a {
+.dark a {
     color: #fff;
+    text-decoration: underline;
 }
 
 * {
@@ -31,6 +32,13 @@ html.dark {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    opacity: 0.7;
 }
 
 h1 {

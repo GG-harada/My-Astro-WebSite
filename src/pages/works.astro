@@ -7,7 +7,7 @@ const pageTitle = '作品タイトル（五十音順）';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-	<ul>
+	<ul class="list">
 		{allPosts
 			// post.ruby の順にソート
 			.sort((a, b) => a.frontmatter.ruby.localeCompare(b.frontmatter.ruby)) 
@@ -16,3 +16,12 @@ const pageTitle = '作品タイトル（五十音順）';
 		)}
 	</ul>
 </BaseLayout>
+
+<style>
+	.list {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+		list-style: none;
+	}
+</style>
